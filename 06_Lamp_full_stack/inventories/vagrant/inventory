@@ -1,0 +1,28 @@
+[lamp_varnish]
+192.168.56.2
+
+[lamp_www]
+192.168.56.3
+192.168.56.4
+
+[a4d.lamp.db.1]
+192.168.56.5
+
+[lamp_db]
+192.168.56.5 mysql_replication_role=master
+192.168.56.6 mysql_replication_role=slave
+
+[lamp_memcached]
+192.168.56.7
+
+[all:children]
+lamp_varnish
+lamp_www
+a4d.lamp.db.1
+lamp_db
+lamp_memcached
+
+# Variables that will be applied to all servers
+[all:vars]
+ansible_user=vagrant
+ansible_ssh_private_key_file=/mnt/c/Users/Marc/.vagrant.d/insecure_private_key
